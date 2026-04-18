@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import VideoPanel from "../components/VideoPanel";
 import ChatPanel from "../components/ChatPanel";
 import MicButton from "../components/MicButton";
@@ -147,7 +146,6 @@ function Interview() {
   const [user, setUser] = useState(null);
   const [isThinking, setIsThinking] = useState(false);
   const [isEvaluating, setIsEvaluating] = useState(false);
-  const navigate = useNavigate();
   const [started, setStarted] = useState(false);
 
   const handleLogout = () => {
