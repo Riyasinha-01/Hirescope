@@ -179,18 +179,24 @@ function Home() {
   const navigate = useNavigate();
 
   const handleSuccess = async (credentialResponse) => {
-    try {
-      const res = await axios.post("http://127.0.0.1:8000/api/auth/google/", {
+  try {
+    const res = await axios.post(
+      `${process.env.REACT_APP_BACKEND_URL}/api/auth/google/`,
+      {
         id_token: credentialResponse.credential,
-      });
-      localStorage.setItem("token", res.data.access);
-      localStorage.setItem("user", JSON.stringify(res.data.user));  // ✅ ADD THIS
+      }
+    );
 
-      navigate("/interview");
-    } catch (err) {
-      console.error("Login failed", err);
-    }
-  };
+    localStorage.setItem("token", res.data.access);
+    localStorage.setItem("user", JSON.stringify(res.data.user));
+
+    // 🔥 FIX
+    window.location.href = "/interview";
+
+  } catch (err) {
+    console.error("Login failed", err);
+  }
+};
 
   const features = [
     {

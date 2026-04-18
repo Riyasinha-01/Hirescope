@@ -36,7 +36,7 @@ function ConversationPanel({ chatId, onClose }) {
     setLoading(true);
     setError(null);
 
-    fetch(`http://localhost:8000/api/chat/history/${chatId}/`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/chat/history/${chatId}/`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`
       }
@@ -285,7 +285,7 @@ function Result() {
   const [results, setResults] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/chat/results/", {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/chat/results/`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`
       }
