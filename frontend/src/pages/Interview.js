@@ -164,11 +164,10 @@ function Interview() {
 
   window.speechSynthesis.onvoiceschanged = () => {};
 
-  // 🔥 ADD THIS (cleanup)
   return () => {
     window.speechSynthesis.cancel();
   };
-}, []);
+}, [navigate]);   // ✅ ADD THIS
 
   const startInterview = async () => {
     setStarted(true);
