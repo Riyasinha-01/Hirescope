@@ -1,5 +1,4 @@
 import { GoogleLogin } from "@react-oauth/google";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 /* ─── Responsive CSS injected as a <style> tag so we can use media queries ── */
@@ -176,8 +175,6 @@ function InjectStyles() {
 }
 
 function Home() {
-  const navigate = useNavigate();
-
   const handleSuccess = async (credentialResponse) => {
   try {
     const res = await axios.post(
