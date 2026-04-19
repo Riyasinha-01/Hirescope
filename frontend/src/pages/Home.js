@@ -23,7 +23,7 @@ const globalCSS = `
     justify-content: space-between;
     padding: 0 20px;
     height: 52px;
-    background: #FFDD00;
+    background: #FFC107;
     border-bottom: 3px solid #111;
     flex-shrink: 0;
     position: sticky;
@@ -67,7 +67,7 @@ const globalCSS = `
   /* BG SHAPES */
   .hs-shape1 {
     position: absolute; right: -40px; top: -20px;
-    width: 140px; height: 140px; background: #FFDD00;
+    width: 140px; height: 140px; background: #FFC107;
     border: 3px solid #111; transform: rotate(14deg);
     opacity: 0.3; pointer-events: none;
   }
@@ -79,7 +79,7 @@ const globalCSS = `
 
   /* BADGE */
   .hs-badge {
-    background: #111; color: #FFDD00;
+    background: #111; color: #FFC107;
     font-size: 10px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase;
     padding: 5px 12px; border: 2px solid #111;
     margin-bottom: 16px; position: relative; z-index: 1;
@@ -96,7 +96,7 @@ const globalCSS = `
     .hs-h1 { white-space: nowrap; font-size: clamp(32px, 4vw, 52px); }
   }
   .hs-h1-highlight {
-    background: #FFDD00; border: 3px solid #111;
+    background: #FFC107; border: 3px solid #111;
     padding: 2px 8px; display: inline; white-space: nowrap;
   }
   .hs-mobile-br { display: inline; }
@@ -128,7 +128,7 @@ const globalCSS = `
   /* GOOGLE BTN */
   .hs-google-btn {
     display: flex; align-items: center; gap: 10px;
-    background: #FFDD00; color: #111;
+    background: #FFC107; color: #111;
     font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 700;
     border: 3px solid #111; box-shadow: 4px 4px 0 #111;
     padding: 12px 20px; cursor: pointer; width: 100%; justify-content: center;
@@ -163,7 +163,7 @@ const globalCSS = `
   .hs-feat:last-child { border-bottom: none; }
   .hs-feat-top { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
   .hs-feat-icon {
-    width: 32px; height: 32px; background: #FFDD00; border: 2px solid #111;
+    width: 32px; height: 32px; background: #FFC107; border: 2px solid #111;
     display: flex; align-items: center; justify-content: center; flex-shrink: 0;
   }
   .hs-feat-title { font-size: 13px; font-weight: 700; color: #111; margin: 0; }

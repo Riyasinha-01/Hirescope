@@ -55,7 +55,7 @@ const styles = {
   labelText: { fontSize: 11, fontWeight: 700, color: "#111", textTransform: "uppercase", letterSpacing: ".5px" },
   livePill: {
     display: "flex", alignItems: "center", gap: 5,
-    background: "#FFE234", border: "1.5px solid #111",
+    background: "#FFC107", border: "1.5px solid #111",
     borderRadius: 20, padding: "3px 10px",
     fontSize: 10, fontWeight: 700, color: "#111", letterSpacing: ".5px",
   },

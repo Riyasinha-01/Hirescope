@@ -28,7 +28,7 @@ function MicButton({ onSend, disabled }) {
         disabled={disabled}
         style={{
           ...styles.btn,
-          background: disabled ? "#ccc" : (listening ? "#FFE234" : "#111"),
+          background: disabled ? "#ccc" : (listening ? "#FFC107" : "#111"),
           color: disabled ? "#666" : (listening ? "#111" : "#fff"),
           cursor: disabled ? "not-allowed" : "pointer",
         }}

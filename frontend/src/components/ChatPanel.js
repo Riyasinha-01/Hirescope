@@ -100,7 +100,7 @@ const styles = {
   },
   aiDot: {
     width: 30, height: 30, minWidth: 30, borderRadius: "50%",
-    background: "#FFE234", border: "1.5px solid #111",
+    background: "#FFC107", border: "1.5px solid #111",
     display: "flex", alignItems: "center", justifyContent: "center",
     fontSize: 9, fontWeight: 700, color: "#111",
   },
@@ -108,7 +108,7 @@ const styles = {
     width: 30, height: 30, minWidth: 30, borderRadius: "50%",
     background: "#111", border: "1.5px solid #111",
     display: "flex", alignItems: "center", justifyContent: "center",
-    fontSize: 9, fontWeight: 700, color: "#FFE234",
+    fontSize: 9, fontWeight: 700, color: "#FFC107",
   },
   aiBubble: {
     maxWidth: "65%", background: "#fff",
@@ -116,7 +116,7 @@ const styles = {
     borderRadius: "4px 14px 14px 14px", padding: "11px 15px",
   },
   userBubble: {
-    maxWidth: "65%", background: "#FFE234",
+    maxWidth: "65%", background: "#FFC107",
     border: "1.5px solid #111",
     borderRadius: "14px 4px 14px 14px", padding: "11px 15px",
   },
@@ -144,7 +144,7 @@ const styles = {
 },
 
 startBtn: {
-  background: "#FFE234",
+  background: "#FFC107",
   color: "#111",
   border: "2px solid #111",
   padding: "14px 24px",

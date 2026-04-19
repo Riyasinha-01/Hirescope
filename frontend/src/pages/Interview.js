@@ -65,7 +65,7 @@ function EvaluatingOverlay() {
         }
         .eval-logo-dot {
           width: 10px; height: 10px;
-          background: #FFE234;
+          background: #FFC107;
           border: 1.5px solid #111;
           border-radius: 50%;
         }
@@ -84,7 +84,7 @@ function EvaluatingOverlay() {
         .eval-spinner {
           width: 48px; height: 48px;
           border: 3px solid #eee;
-          border-top: 3px solid #FFE234;
+          border-top: 3px solid #FFC107;
           border-right: 3px solid #111;
           border-radius: 50%;
           animation: evalSpin 0.9s linear infinite;
@@ -252,7 +252,7 @@ function Interview() {
           justify-content: space-between;
           padding: 0 20px;
           height: 56px;
-          background: #FFE234;
+          background: #FFC107;
           border-bottom: 1.5px solid #111;
           flex-shrink: 0;
         }
@@ -280,7 +280,7 @@ function Interview() {
         .user-name { font-size: 13px; font-weight: 700; color: #111; }
         .user-email { font-size: 11px; color: #555; display: none; }
         .results-btn {
-          background: #111; color: #FFE234;
+          background: #111; color: #FFC107;
           border: 1.5px solid #111; border-radius: 8px;
           padding: 7px 14px; font-size: 12px;
           font-weight: 700; cursor: pointer;
@@ -343,7 +343,7 @@ function Interview() {
         }
         .thinking-badge {
           display: flex; align-items: center; gap: 5px;
-          background: #FFE234; border: 1.5px solid #111;
+          background: #FFC107; border: 1.5px solid #111;
           border-radius: 8px; padding: 10px 14px;
         }
         .think-dot {

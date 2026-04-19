@@ -375,7 +375,7 @@ const s = {
   page: { minHeight: "100vh", background: "#f6f7fb", fontFamily: "Inter, sans-serif" },
   header: {
     display: "flex", justifyContent: "space-between", alignItems: "center",
-    padding: "0 20px", height: 56, background: "#FFE234",
+    padding: "0 20px", height: 56, background: "#FFC107",
   },
   backBtn: {
     background: "#111", color: "#fff", border: "none",
@@ -405,7 +405,7 @@ const s = {
 
   sessionBadge: {
     width: 36, height: 36, borderRadius: 10,
-    background: "#FFE234", border: "1.5px solid #e5c800",
+    background: "#FFC107", border: "1.5px solid #e5c800",
     display: "flex", alignItems: "center", justifyContent: "center",
     fontWeight: 800, fontSize: 12, color: "#111", flexShrink: 0,
   },
@@ -473,7 +473,7 @@ const pS = {
   },
   panelHeader: {
     display: "flex", justifyContent: "space-between", alignItems: "flex-start",
-    padding: "18px 20px", background: "#FFE234",
+    padding: "18px 20px", background: "#FFC107",
     borderBottom: "2px solid #e5c800", flexShrink: 0,
   },
   panelTitle: { fontWeight: 800, fontSize: 16, color: "#111" },
@@ -509,7 +509,7 @@ const pS = {
   msgRow: { display: "flex", alignItems: "flex-end", gap: 8 },
   avatarAI: {
     width: 28, height: 28, borderRadius: "50%",
-    background: "#FFE234", border: "1.5px solid #e5c800",
+    background: "#FFC107", border: "1.5px solid #e5c800",
     display: "flex", alignItems: "center", justifyContent: "center",
     fontSize: 10, fontWeight: 800, color: "#111", flexShrink: 0,
   },
