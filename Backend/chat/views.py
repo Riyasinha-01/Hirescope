@@ -78,36 +78,37 @@ def send_message(request):
     assistant_count = Message.objects(chat=chat, role="assistant").count()
 
     try:
-        # 🟢 Ask questions (1–5)
         if assistant_count < 5:
             ai_response = generate_ai_response(conversation_history)
 
-        # 🔴 Generate evaluation ONLY ONCE (exactly at 5)
-        elif assistant_count == 5:
+        else:
             ai_response = generate_evaluation(conversation_history)
 
             parsed = parse_evaluation(ai_response)
 
-            # 🔥 Save ONLY if not already saved (double safety)
-            if not Result.objects(chat=chat).first():
-                Result(
-                    user=user,
-                    chat=chat,
-                    result=ai_response,
-                    clarity=parsed["clarity"],
-                    warmth=parsed["warmth"],
-                    patience=parsed["patience"],
-                    simplicity=parsed["simplicity"],
-                    fluency=parsed["fluency"],
-                    verdict=parsed["verdict"]
-                ).save()
+            if not parsed["verdict"]:
+            # 🔁 retry once
+                ai_response = generate_evaluation(conversation_history)
+                parsed = parse_evaluation(ai_response)
 
-        else:
-            # 🚫 Prevent anything after evaluation
-            return Response({
-                "chat_id": str(chat.id),
-                "reply": "Interview already completed."
-            })
+                # ❌ still failed
+                if not parsed["verdict"]:
+                    return Response({
+                        "chat_id": str(chat.id),
+                        "reply": "Evaluation failed. Please try again."
+                    })
+
+            Result(
+                user=user,
+                chat=chat,
+                result=ai_response,
+                clarity=parsed["clarity"],
+                warmth=parsed["warmth"],
+                patience=parsed["patience"],
+                simplicity=parsed["simplicity"],
+                fluency=parsed["fluency"],
+                verdict=parsed["verdict"]
+            ).save()
 
         if isinstance(ai_response, dict) and "error" in ai_response:
             return Response(ai_response, status=500)

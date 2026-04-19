@@ -82,7 +82,14 @@ def generate_evaluation(conversation_messages):
 
     system_prompt = """
 You are an expert interviewer evaluating a candidate for an online math tutor role for children.
+STRICT FORMAT:
+You MUST follow this format exactly.
 
+If you do not follow format, response is invalid.
+
+Do NOT ask any question.
+Do NOT continue interview.
+ONLY return evaluation.
 Analyze the full conversation and evaluate the candidate on:
 
 - Clarity (out of 10)
