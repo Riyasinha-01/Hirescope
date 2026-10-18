@@ -1,9 +1,5 @@
-import { useEffect, useState } from "react";
 import { GoogleLogin } from "@react-oauth/google";
 import axios from "axios";
-
-/* Where the "Explore jobs" button sends people */
-const NEW_PLATFORM_URL = "https://hrmscope.vercel.app/";
 
 /* ─── Responsive CSS injected as a <style> tag so we can use media queries ── */
 const globalCSS = `
@@ -172,178 +168,13 @@ const globalCSS = `
   }
   .hs-feat-title { font-size: 13px; font-weight: 700; color: #111; margin: 0; }
   .hs-feat-desc  { font-size: 12px; color: #555; line-height: 1.5; margin: 0; }
-
-  /* ─── LAUNCH POPUP ─── */
-  .hs-promo-overlay {
-    position: fixed; inset: 0; z-index: 1000;
-    background: rgba(17, 17, 17, 0.7);
-    display: flex; align-items: center; justify-content: center;
-    padding: 16px; overflow-y: auto;
-  }
-  .hs-promo {
-    position: relative; display: flex; width: 100%; max-width: 920px; min-height: 480px;
-    background: #111; border: 3px solid #111; box-shadow: 14px 14px 0 #FFC107;
-  }
-  .hs-promo-left {
-    flex: 1; padding: 44px 40px; color: #fff;
-    display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
-  }
-  .hs-promo-tag {
-    background: #FFC107; color: #111; font-size: 12px; font-weight: 700;
-    letter-spacing: 1.7px; text-transform: uppercase; padding: 8px 14px;
-  }
-  .hs-promo-h2 {
-    margin: 20px 0 0; font-size: clamp(30px, 5vw, 44px); font-weight: 700;
-    line-height: 1.04; letter-spacing: -0.03em;
-  }
-  .hs-promo-h2 span { color: #FFC107; }
-  .hs-promo-sub {
-    margin-top: 14px; font-size: 22px; font-weight: 700;
-    letter-spacing: -0.02em; line-height: 1.2;
-  }
-  .hs-promo-sub span {
-    background: #FFC107; color: #111; padding: 0 8px; display: inline-block;
-  }
-  .hs-promo-text { margin: 16px 0 0; font-size: 17px; line-height: 1.55; color: #ddd; }
-  .hs-promo-actions {
-    margin-top: 30px; display: flex; align-items: center; gap: 22px; flex-wrap: wrap;
-  }
-  .hs-promo-cta {
-    background: #FFC107; color: #111; border: 3px solid #FFC107;
-    padding: 15px 24px; font-weight: 700; font-size: 17px; text-decoration: none;
-    transition: transform 0.08s;
-  }
-  .hs-promo-cta:hover { transform: translate(-2px, -2px); }
-  .hs-promo-later {
-    background: none; border: none; padding: 0; cursor: pointer;
-    color: #fff; font-family: inherit; font-size: 15px; font-weight: 500;
-    text-decoration: underline;
-  }
-  .hs-promo-cta:focus-visible, .hs-promo-later:focus-visible, .hs-promo-close:focus-visible {
-    outline: 3px solid #fff; outline-offset: 3px;
-  }
-  .hs-promo-close {
-    position: absolute; top: 14px; right: 14px; z-index: 3;
-    width: 36px; height: 36px; background: #fff; border: 2px solid #111; cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .hs-promo-right {
-    width: 400px; flex-shrink: 0; background: #FFC107; border-left: 3px solid #111;
-    position: relative; overflow: hidden;
-  }
-  .hs-pc {
-    position: absolute; width: 290px; background: #fff; border: 3px solid #111;
-    box-shadow: 5px 5px 0 #111; padding: 16px 18px;
-  }
-  .hs-pc-label {
-    font-size: 12px; font-weight: 700; color: #555;
-    letter-spacing: 1.2px; text-transform: uppercase;
-  }
-  .hs-pc-title { font-size: 20px; font-weight: 700; margin-top: 4px; color: #111; }
-  .hs-pc-chip {
-    margin-top: 12px; display: inline-block; font-size: 12px; font-weight: 700;
-    padding: 3px 10px; border: 2px solid #111; color: #111; background: #fff;
-  }
-  .hs-pc-chip--dark { background: #111; color: #fff; }
-  .hs-pc-chip--yellow { background: #FFC107; }
-
-  @media (max-width: 760px) {
-    .hs-promo-right { display: none; }
-    .hs-promo { min-height: 0; box-shadow: 8px 8px 0 #FFC107; }
-    .hs-promo-left { padding: 60px 24px 32px; }
-    .hs-promo-sub { font-size: 19px; }
-    .hs-promo-text { font-size: 16px; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .hs-promo-cta { transition: none; }
-  }
 `;
 
 function InjectStyles() {
   return <style dangerouslySetInnerHTML={{ __html: globalCSS }} />;
 }
 
-/* ─── Launch popup: announces the recruitment platform ───────────────────── */
-function LaunchPromo({ onClose }) {
-  useEffect(() => {
-    const onKey = (e) => e.key === "Escape" && onClose();
-    document.addEventListener("keydown", onKey);
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = prevOverflow;
-    };
-  }, [onClose]);
-
-  return (
-    <div className="hs-promo-overlay" onClick={onClose}>
-      <div
-        className="hs-promo"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="hs-promo-title"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button className="hs-promo-close" onClick={onClose} aria-label="Close">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#111" strokeWidth="3" strokeLinecap="round" aria-hidden="true">
-            <path d="M5 5l14 14M19 5L5 19" />
-          </svg>
-        </button>
-
-        <div className="hs-promo-left">
-          <div className="hs-promo-tag">New · Product launched</div>
-          <h2 className="hs-promo-h2" id="hs-promo-title">
-            Practice is just <span>round one.</span>
-          </h2>
-          <div className="hs-promo-sub">
-            Hirescope is now a <span>hiring platform</span> too.
-          </div>
-          <p className="hs-promo-text">
-            Hirescope now lists real openings. Apply to companies, and get invited to AI
-            interviews as part of their screening.
-          </p>
-          <div className="hs-promo-actions">
-            <a className="hs-promo-cta" href={NEW_PLATFORM_URL} onClick={onClose}>
-              Explore jobs →
-            </a>
-            <button className="hs-promo-later" onClick={onClose}>Not now</button>
-          </div>
-        </div>
-
-        <div className="hs-promo-right" aria-hidden="true">
-          <div className="hs-pc" style={{ left: 46, top: 84, transform: "rotate(-5deg)" }}>
-            <div className="hs-pc-label">Open role</div>
-            <div className="hs-pc-title">Frontend Developer</div>
-            <div className="hs-pc-chip hs-pc-chip--dark">Apply</div>
-          </div>
-          <div className="hs-pc" style={{ left: 70, top: 206, transform: "rotate(3deg)" }}>
-            <div className="hs-pc-label">Screening</div>
-            <div className="hs-pc-title">Data Analyst</div>
-            <div className="hs-pc-chip hs-pc-chip--yellow">AI interview scheduled</div>
-          </div>
-          <div className="hs-pc" style={{ left: 40, top: 328, transform: "rotate(-2deg)" }}>
-            <div className="hs-pc-label">Practice</div>
-            <div className="hs-pc-title">Mock interview</div>
-            <div className="hs-pc-chip">Report ready</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function Home() {
-  const [showPromo, setShowPromo] = useState(false);
-
-  /* Show on every visit, shortly after the page loads */
-  useEffect(() => {
-    const t = setTimeout(() => setShowPromo(true), 800);
-    return () => clearTimeout(t);
-  }, []);
-
-  const closePromo = () => setShowPromo(false);
-
   const handleSuccess = async (credentialResponse) => {
   try {
     const res = await axios.post(
@@ -469,9 +300,6 @@ function Home() {
             ))}
           </div>
         </main>
-
-        {/* ── Launch popup ── */}
-        {showPromo && <LaunchPromo onClose={closePromo} />}
 
       </div>
     </>
